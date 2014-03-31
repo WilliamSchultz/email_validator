@@ -13,4 +13,3 @@ Write a function that checks the user-entered e-mail to the following rules:
 6. if the name has a double quotation marks ", they must be paired;
 
 7. in the name can meet the characters "!," but only between paired double quotes.
-Подробнее: http://company.yandex.ru/job/vacancies/intern_python.xml
