@@ -3,38 +3,50 @@ from email_validator import email_validator
 
 class EmailValidatorTests(unittest.TestCase):
     
-    def testOne(self):
+    def test1(self):
         self.assertFalse(email_validator("hellome.com")) #testing no @ presence 
 
-    def testTwo(self):
+    def test2(self):
         self.assertTrue(email_validator("hello@me.com")) #testing @ presence
         
-    def testThree(self):
+    def test3(self):
         self.assertFalse(email_validator("william@me")) #testing domain length: too short
         
-    def testFour(self):
+    def test4(self):
         self.assertFalse(email_validator("william@%s" % ("a" * 257))) #testing domain length: too long
     
-    def testFive(self):
+    def test5(self):
         self.assertTrue(email_validator("william@me.com")) #testing domain length: ok
         
-    def testSix(self):
+    def test6(self):
       self.assertFalse(email_validator("@me.com")) #testing name length: too short
       
-    def testSeven(self):
+    def test7(self):
       self.assertFalse(email_validator("%s@me.com" % ("a" * 129))) #testing name length: too long
   
-    def testEight(self):
+    def test8(self):
       self.assertTrue(email_validator("william@me.com")) #testing name length: ok
       
-    def testNine(self):
+    def test9(self):
       self.assertFalse(email_validator("william@-me.com")) #domain begins with - 
       
-    def testTen(self):
+    def test10(self):
       self.assertFalse(email_validator("william@me.com-")) #domain ends with - 
   
-    def testEleven(self):
+    def test11(self):
       self.assertTrue(email_validator("william@me.com")) #domain doesn't begin or end with - 
+     
+    def test12(self):
+        self.assertTrue(email_validator("williaa-z0-9.\"_-am@me.com")) #testing required characters name
+    
+    def test13(self):
+        self.assertFalse(email_validator("willi&#*?!;^@me.com")) #testing some characters outside of a-z0-9.\"_- for name
+    
+    def test14(self):
+        self.assertTrue(email_validator("william@me.c_-9om")) #testing required characters for domain
+        
+    def test15(self):
+        self.assertFalse(email_validator("william@me.c&#*?!;^om"))
 
 def main():
     unittest.main()
