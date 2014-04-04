@@ -37,7 +37,7 @@ class EmailValidatorTests(unittest.TestCase):
       self.assertTrue(email_validator("william@me.com")) #domain doesn't begin or end with - 
      
     def test12(self):
-        self.assertTrue(email_validator("williaa-z0-9.\"_-am@me.com")) #testing required characters name
+        self.assertTrue(email_validator("williaa-z0-9._-am@me.com")) #testing required characters name, without "
     
     def test13(self):
         self.assertFalse(email_validator("willi&#*?!;^@me.com")) #testing some characters outside of a-z0-9.\"_- for name
@@ -46,7 +46,22 @@ class EmailValidatorTests(unittest.TestCase):
         self.assertTrue(email_validator("william@me.c_-9om")) #testing required characters for domain
         
     def test15(self):
-        self.assertFalse(email_validator("william@me.c&#*?!;^om"))
+        self.assertFalse(email_validator("william@me.c&#*?!;^om")) #testing characters outside the required characters for domain
+    
+    def test16(self):
+        self.assertFalse(email_validator("will..iam@me.com")) #testing for two .. in a row in name
+    
+    def test17(self):
+        self.assertTrue(email_validator("wil.lia.m@me.com")) # testing two .. not is a row. 
+    
+    def test18(self):
+        self.assertFalse(email_validator("willi\"s@me.com")) #testing one " will fail
+    
+    def test19(self):
+        self.assertTrue(email_validator("willi\"!,:fd\"dfj\"!,:\"df@me.com")) # !,: can exist inside " "
+    
+    def test20(self):
+        self.assertFalse(email_validator("will\"!,:\"dfkjf!,:df\"fdkdjf\"@me.com")) # !,: can't exist outside of " " 
 
 def main():
     unittest.main()
