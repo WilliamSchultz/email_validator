@@ -1,4 +1,6 @@
-Write a function that checks the user-entered e-mail to the following rules:
+### about
+
+The challenge was to write a function that checks the user-entered e-mail to the following rules. The problem was solved with a series of conditions, but in hindsight could have been solved more elgantly with each rule as a funciton. 
 
 1. e-mail consists of a name and the domain part, these parts are separated by the "@"
 
@@ -13,3 +15,5 @@ Write a function that checks the user-entered e-mail to the following rules:
 6. if the name has a double quotation marks ("), it must be paired
 
 7. in the name can meet the characters "!,:" but only between paired double quotes.
+
+
